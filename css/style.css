@@ -1,0 +1,159 @@
+body {
+  transition-property: "background-image";
+  transition-duration: 1s;
+  background-image: linear-gradient(90deg, blue, red);
+}
+
+body.blue {
+  background-image: linear-gradient(90deg, blue, blue, red);
+}
+
+body.red {
+  background-image: linear-gradient(90deg, blue, red, red);
+}
+
+.container {
+  padding: 3px;
+  display: flex;
+  width: 330px;
+  height: 330px;
+  flex-flow: row wrap;
+  margin: 100px auto;
+  justify-content: space-evenly;
+}
+
+.container .cell {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 30px;
+  transition: 0.5s;
+  position: relative;
+  cursor: pointer;
+}
+
+.container .cell.x,
+.container .cell.o {
+  cursor: not-allowed;
+}
+
+.container .cell:hover {
+  transform: scale(1.1);
+}
+
+.container .cell.x::after,
+.container .cell.x::before,
+.container .cell.o::before {
+  background-color: gray;
+}
+
+.container.x .cell:not(.x):not(.o):hover::after,
+.container.x .cell:not(.x):not(.o):hover::before,
+.container.o .cell:not(.x):not(.o):hover::before {
+  background-color: lightgray;
+}
+
+.container .cell.x::before,
+.container .cell.x::after,
+.container.x .cell:not(.x):not(.o):hover::after,
+.container.x .cell:not(.x):not(.o):hover::before {
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 80%;
+  left: 40px;
+  top: 10px;
+  border-radius: 10px;
+}
+
+.container .cell.x::before,
+.container.x .cell:not(.x):not(.o):hover::before {
+  transform: rotate(45deg);
+}
+
+.container .cell.x::after,
+.container.x .cell:not(.x):not(.o):hover::after {
+  transform: rotate(-45deg);
+}
+
+.container .cell.o::before,
+.container.o .cell:not(.x):not(.o):hover::before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  top: 10px;
+  left: 10px;
+}
+
+.container .cell.o::after,
+.container.o .cell:not(.x):not(.o):hover::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background-color: white;
+  left: 15px;
+  top: 15px;
+}
+
+.global-container.show {
+  background: transparent;
+  filter: blur(200px);
+}
+
+.win-msg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.9);
+  align-items: center;
+}
+
+.win-msg.blue {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+.win-msg.red {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.win-msg.show {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.win-msg .msg {
+  text-align: center;
+}
+
+.win-msg .msg h1 {
+  font-weight: 400;
+  font-size: 50px;
+  color: white;
+}
+
+.win-msg .btn button {
+  font-size: 70px;
+  padding: 15px 100px;
+  color: rgb(99, 99, 99);
+  border: none;
+  border-radius: 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.win-msg .btn {
+  display: inline-block;
+}
+.win-msg .btn button:hover {
+  background-color: darkgray;
+  color: white;
+  border: none;
+}
